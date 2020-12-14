@@ -1,91 +1,44 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
-
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
+    <v-row class="text-center mt-10">
+      <v-col cols="4" v-for="project in projects":key="project.weekNumber">
+          <v-card height="300" width="500">
+            <v-card-title>
+              {{ project.name }}
+              <v-spacer></v-spacer>
+              <v-btn
+                  :color="'#'+(Math.random()*0x66FFFF<<0).toString(16)"
+                  dark
+                  fab
+                  small
+                  style="opacity: 0.4"
+              >
+                <span class="subtitle-1">{{ project.weekNumber }}</span>
+              </v-btn>
+            </v-card-title>
+              <v-layout justify-center>
+                <v-card-text>
+                  <p class="caption">{{ project.intro }}</p>
+                </v-card-text>
+              </v-layout>
+            <v-layout>
+              <v-card-actions class="card-actions">
+                <v-spacer></v-spacer>
+                <v-btn class="teal" :href="project.githubUrl" target="_blank" small v-if="project.githubUrl">
+                  <v-icon class="mr-2">mdi-github</v-icon>
+                  Github
+                </v-btn>
+                <v-btn class="lime" :href="project.liveUrl" target="_blank" small v-if="project.liveUrl">
+                  <v-icon class="mr-2">mdi-web</v-icon>
+                  Live
+                </v-btn>
+                <v-btn class="amber" small>
+                  <v-icon class="mr-2">mdi-dots-horizontal</v-icon>
+                  Mehr
+                </v-btn>
+              </v-card-actions>
+            </v-layout>
+          </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -96,56 +49,76 @@
     name: 'HelloWorld',
 
     data: () => ({
-      ecosystem: [
+      projects: [
         {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
+          name:"oneWeek",
+          intro: "oneWeek, is my personal portfolio where i try to publish every week a programming project where i try to focus on one spcific topic.",
+          description: "full bla blaa",
+          weekNumber: 1,
+          tags: ["vue", "vuex", "vuetify"],
+          githubUrl: "https://github.com/dev-ale/oneWeek",
+          liveUrl: false
         },
         {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
+          name:"Glassmorphism Calculator",
+          intro: "blablabla",
+          description: "full bla blaa",
+          weekNumber: 2,
+          tags: ["javascript", "css"],
+          githubUrl: "https://github.com/dev-ale/calculator-glassmorphism",
+          liveUrl: "https://glassmorphismcalc.surge.sh/"
         },
         {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
+          name:"fhnw iot lossprevention",
+          intro: "blablabla",
+          description: "full bla blaa",
+          weekNumber: 3,
+          tags: ["vue", "iot", "c++", "nodered", "mqtt"],
+          githubUrl: "https://github.com/dev-ale/fhnw-iot-lossprevention",
+          liveUrl: "https://lossprevention.surge.sh"
         },
+        {
+          name:"iot Bricks Gateways Frontend",
+          intro: "blablabla",
+          description: "full bla blaa",
+          weekNumber: 4,
+          tags: ["vue", "iot", "c++", "nodered", "mqtt"],
+          githubUrl: "https://github.com/dev-ale/fhnw-iot-lossprevention",
+          liveUrl: "https://iot-bricks.surge.sh"
+        },
+        {
+          name:"Pomodoro Timer",
+          intro: "blablabla",
+          description: "full bla blaa",
+          weekNumber: 5,
+          tags: ["vue"],
+          githubUrl: "https://github.com/dev-ale/pomodoro-timer-app",
+          liveUrl: false
+        },
+        {
+          name:"FHNW Vue SVG Animation",
+          intro: "blablabla",
+          description: "full bla blaa",
+          weekNumber: 6,
+          tags: ["vue"],
+          githubUrl: "https://github.com/dev-ale/pomodoro-timer-app",
+          liveUrl: false
+        }
       ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
+      mycolor: '#'+(Math.random()*0xFFFFFF<<0).toString(16)
     }),
+    mounted() {
+
+    },
+    methods: {
+
+    }
   }
 </script>
+
+<style>
+  .card-actions {
+    position: absolute;
+    bottom: 0;
+  }
+</style>
